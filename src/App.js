@@ -4,10 +4,9 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 
 
 import './App.css';
-import Users from './types/pages/Users.js';
-import NewPlace from './game/games/NewGame.js/index.js';
+
 import MainNavigation from './shared/components/Navigation/MainNavigation';
-import TypeGames from './game/games/TypeGames';
+
 
 
 
@@ -18,14 +17,12 @@ const App = () => {
     <main>
     <Switch>
       <Route path="/" exact>
-        <Users />
+        
       </Route>
-      <Route path="/:userId/places" exact>
-        <TypeGames />
+      <Route path="/games" exact>
+        
       </Route>
-      <Route path="/places/new" exact>
-        <NewPlace />
-      </Route>
+      
       <Redirect to="/" />
       </Switch>
       </main>
