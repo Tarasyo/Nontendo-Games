@@ -22,6 +22,18 @@ const NewGame = () => {
       release: {
         value: '',
         isValid: false
+      },
+      director: {
+        value: '',
+        isValid: false
+      },
+      rank: {
+        value: '',
+        isValid: false
+      },
+      imageUrl: {
+        value: '',
+        isValid: false
       }
     },
     false
@@ -38,15 +50,15 @@ const NewGame = () => {
         id="name"
         element="input"
         type="text"
-        label="name"
+        label="Name"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter a valid name."
         onInput={inputHandler}
       />
       <Input
         id="publisher"
-        element="textarea"
-        label="publisher"
+        element="input"
+        label="Publisher"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter a valid name."
         onInput={inputHandler}
@@ -54,9 +66,33 @@ const NewGame = () => {
       <Input
         id="release"
         element="input"
-        label="release"
+        label="Release"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter a valid release."
+        onInput={inputHandler}
+      />
+       <Input
+        id="director"
+        element="input"
+        label="Director"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid director."
+        onInput={inputHandler}
+      />
+       <Input
+        id="rank"
+        element="input"
+        label="Rank"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid Rank."
+        onInput={inputHandler}
+      />
+      <Input
+        id="imgeUrl"
+        element="input"
+        label="Image URL"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid URL."
         onInput={inputHandler}
       />
       <Button type="submit" disabled={!formState.isValid}>
