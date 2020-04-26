@@ -37,7 +37,7 @@ const MainNavigation = props => {
           <span />
         </button>
         <h1 className="main-navigation__title">
-          <Link to="/">My Games Taras Boreyko 2017284</Link>
+          <Link to="/">My Nintendo Games</Link>
         </h1>
         <nav className="main-navigation__header-nav">
           <NavLinks />

@@ -16,7 +16,7 @@ const GenreItem = props => {
           <div className="genre-item__info">
             <h2>{props.name}</h2>
             <h3>
-              {props.gameCount} {props.gameCount === 1 ? 'Game' : 'Games'}
+              {props.gamesCount} {props.gamesCount === 1 ? 'Game' : 'Games'}
             </h3>
           </div>
         </Link>

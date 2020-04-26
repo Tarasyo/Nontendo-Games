@@ -51,7 +51,7 @@ const GameItem = props => {
           <div className="game-item__image">
             <img src={props.image} alt={props.name} />
           </div>
-          <div className="Game-item__info">
+          <div className="game-item__info">
             <h2>{props.name}</h2>
             <h3>Publisher: {props.publisher}</h3>
             <p>Release: {props.release} Director: {props.director}</p>

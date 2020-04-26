@@ -29,8 +29,8 @@ const DUMMY_GAMES = [
 ];
 
 const GenreGames = () => {
-  const genreId = useParams().ganreId;
-  const loadedGames = DUMMY_GAMES.filter(game => game.creator === genreId);
+  const genreIdd = useParams().genreId;
+  const loadedGames = DUMMY_GAMES.filter(game => game.genreId === genreIdd);
   return <GameList items={loadedGames} />;
 };
 
