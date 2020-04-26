@@ -12,11 +12,11 @@ exports.createGenre = function(req, res) {
 };
 
 exports.getGenre = function(req, res) {
-  Genre.find({}, function (err, genre) {
+  Genre.find({}, function (err, genres) {
     if (err) {
       res.status(400).json(err); 
     } 
-    res.json(genre);
+    res.json(genres);
   }); 
 };
 

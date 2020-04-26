@@ -19,11 +19,12 @@ const GenreList = props => {
     <ul className="genre-list">
       {props.items.map(genre => (
         <GenreItem
-          key={genre.id}
+          key={genre._id}
+          _id={genre._id}
           id={genre.id}
           image={genre.image}
           name={genre.name}
-          gamesCount={genre.games}
+          gamesCount={genre.games.length}
         />
       ))}
     </ul>
