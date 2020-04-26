@@ -2,36 +2,29 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-const placesRoutes = require('./routes/places-routes');
-const usersRoutes = require('./routes/users-routes');
-const HttpError = require('./models/http-error');
+const gamesRoutes = require('./routes/games-routes');
+const genreRoutes = require('./routes/genre-routes');
 
 const app = express();
+var port = process.env.PORT || 5000;
 
+app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(require('./routes'));
 
-app.use('/api/places', placesRoutes);
-app.use('/api/users', usersRoutes);
+app.use('/api/games', gamesRoutes);
+app.use('/api/genre', genreRoutes);
 
-app.use((req, res, next) => {
-  const error = new HttpError('Could not find this route.', 404);
-  throw error;
+app.listen(port, function(err){
+    console.log("Listening on Port: " + port)
 });
 
-app.use((error, req, res, next) => {
-  if (res.headerSent) {
-    return next(error);
-  }
-  res.status(error.code || 500);
-  res.json({ message: error.message || 'An unknown error occurred!' });
+mongoose.connect(process.env.MONGODB_URL);
+mongoose.connection.on('error', (err) => { 
+    console.log('Mongodb Error: ', err); 
+    process.exit();
 });
-
-mongoose
-  .connect('mongodb+srv://manu:academind123@cluster0-ntrwp.mongodb.net/places?retryWrites=true&w=majority')
-  .then(() => {
-    app.listen(5000);
-  })
-  .catch(err => {
-    console.log(err);
-  });
+mongoose.connection.on('connected', () => { 
+    console.log('MongoDB is successfully connected');
+});
 
