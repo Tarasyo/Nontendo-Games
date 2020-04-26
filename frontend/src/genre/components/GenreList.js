@@ -9,7 +9,7 @@ const GenreList = props => {
     return (
       <div className="center">
         <Card>
-          <h2>Gunre not found.</h2>
+          <h2>Genre not found.</h2>
         </Card>
       </div>
     );
