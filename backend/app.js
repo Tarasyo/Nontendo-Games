@@ -16,11 +16,6 @@ app.use(bodyParser.json());
 app.use('/api/games', gamesRoutes);
 app.use('/api/genre', genreRoutes);
 
-// app.get('/:gid', gamesControllers.getGameById);
-// app.get('/genre/:uid', gamesControllers.getGamesByGenreId);
-// app.post('/', gamesControllers.createGame);
-// app.patch('/:gid', gamesControllers.updateGame);
-// app.delete('/:gid', gamesControllers.deleteGame);
 
 app.listen(port, function(err){
     console.log("Listening on Port: " + port)
