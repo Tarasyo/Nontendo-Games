@@ -4,20 +4,17 @@ import { NavLink } from 'react-router-dom';
 import './NavLinks.css';
 
 const NavLinks = props => {
-    return (
-    <ul className="nav-links">
-        <li>
-            <NavLink to="/" exact>TYPACE OF GAMES</NavLink>
-        </li>
-        <li>
-            <NavLink to="/u1/places">GAMES</NavLink>
-        </li>
-        <li>
-            <NavLink to="/places/new">NEW GAME</NavLink>
-        </li>
-    </ul>
-    );
+  return <ul className="nav-links">
+    <li>
+      <NavLink to="/" exact>All Genres</NavLink>
+    </li>
+    <li>
+      <NavLink to="/u1/games">Games</NavLink>
+    </li>
+    <li>
+      <NavLink to="/games/new">Add Game</NavLink>
+    </li>
+  </ul>
 };
-
 
 export default NavLinks;
