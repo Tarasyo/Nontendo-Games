@@ -1,6 +1,8 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
+var express = require('express'),
+ bodyParser = require('body-parser'),
+ mongoose = require('mongoose'),
+ logger = require("morgan");
+require('dotenv').config();
 
 const gamesRoutes = require('./routes/games-routes');
 const genreRoutes = require('./routes/genre-routes');
@@ -10,16 +12,21 @@ var port = process.env.PORT || 5000;
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(require('./routes'));
 
 app.use('/api/games', gamesRoutes);
 app.use('/api/genre', genreRoutes);
+
+// app.get('/:gid', gamesControllers.getGameById);
+// app.get('/genre/:uid', gamesControllers.getGamesByGenreId);
+// app.post('/', gamesControllers.createGame);
+// app.patch('/:gid', gamesControllers.updateGame);
+// app.delete('/:gid', gamesControllers.deleteGame);
 
 app.listen(port, function(err){
     console.log("Listening on Port: " + port)
 });
 
-mongoose.connect(process.env.MONGODB_URL);
+mongoose.connect('mongodb+srv://test:ccttestuser@cluster0-wdwhi.mongodb.net/test?retryWrites=true&w=majority');
 mongoose.connection.on('error', (err) => { 
     console.log('Mongodb Error: ', err); 
     process.exit();

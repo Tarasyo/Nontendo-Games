@@ -1,11 +1,8 @@
-const { validationResult } = require('express-validator');
-
-const HttpError = require('../models/http-error');
 const Genre = require('../models/genre');
 
 exports.createGenre = function(req, res) { 
-    var newuser = new Genre(req.body);
-    newuser.save(function (err, user) { 
+    var newgenre = new Genre(req.body);
+    newgenre.save(function (err, genre) { 
         if (err) { 
             res.status(400).json(err);
         }
@@ -15,7 +12,7 @@ exports.createGenre = function(req, res) {
 };
 
 exports.getGenre = function(req, res) {
-  Genre.find({}, function (err, users) {
+  Genre.find({}, function (err, genre) {
     if (err) {
       res.status(400).json(err); 
     } 

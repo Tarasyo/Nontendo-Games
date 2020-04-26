@@ -1,18 +1,17 @@
-const express = require('express');
-const { check } = require('express-validator');
+var express = require('express'),
+router = express.Router();
 
-const gamesControllers = require('../controllers/games-controllers');
+var gamesControllers = require('../controllers/games-controllers');
 
-const router = express.Router();
+module.exports.UPLOAD_PATH = 'uploads';
 
-router.get('/:gid', gamesControllers.getGameById);
+var multer = require('multer');
+var upload = multer({ dest: module.exports.UPLOAD_PATH });
 
-router.get('/genre/:uid', gamesControllers.getGamesByGenreId);
-
+router.get('/:gid', gamesControllers.getGames);
+router.get('/genre/:uid', gamesControllers.getGame);
 router.post('/', gamesControllers.createGame);
-
 router.patch('/:gid', gamesControllers.updateGame);
-
 router.delete('/:gid', gamesControllers.deleteGame);
 
 module.exports = router;
