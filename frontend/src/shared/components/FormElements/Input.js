@@ -61,13 +61,11 @@ const Input = props => {
         value={inputState.value}
       />
     ) : (
-      <textarea
-        id={props.id}
-        rows={props.rows || 3}
-        onChange={changeHandler}
-        onBlur={touchHandler}
-        value={inputState.value}
-      />
+        <select id={props.id} value={inputState.value} onChange={changeHandler}>            
+            <option value="5ea5cde1db5e6a98a82fc654">Adventure</option>
+            <option value="5ea5ef22be62a5d46a660f7f">Role-playing</option>
+            <option value="5ea5ef68be62a5d46a660f80">Sports</option>
+        </select>
     );
 
   return (

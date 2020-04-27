@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 import {
   VALIDATOR_REQUIRE,
@@ -13,7 +14,8 @@ import './GameForm.css';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
 const NewGame = () => {
-  const { isLoading, sendRequest} = useHttpClient();
+    
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -47,7 +49,8 @@ const NewGame = () => {
     },
     false
   );
-  console.log(formState);
+    
+  
 
   const history = useHistory();
 
@@ -74,6 +77,8 @@ const NewGame = () => {
   
 
   return (
+      <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
       <form className="game-form" onSubmit={gameSubmitHandler}>
         {isLoading && <LoadingSpinner asOverlay />}
       <Input
@@ -127,17 +132,20 @@ const NewGame = () => {
       />
       <Input
         id="genreId"
-        element="input"
-        label="Categorys: Advent=1, Role-playing=2, Sports=3"
-        validators={[VALIDATOR_MAX(3)]}
-        errorText="Please enter one of hte numbers."
+        element="select"
+        label="CGenre Options"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter one of the Genre."
         onInput={inputHandler}
       />
+      
+        
 
       <Button type="submit" disabled={!formState.isValid}>
         ADD GAME
       </Button>
     </form>
+    </React.Fragment>
   );
 };
 
