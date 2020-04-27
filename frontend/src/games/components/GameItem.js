@@ -58,7 +58,7 @@ const GameItem = props => {
             <h3>RANK: {props.rank}</h3>
           </div>
           <div className="game-item__actions">
-            <Button to={`/games/${props.id}`}>EDIT</Button>
+            <Button to={`/games/${props._id}`}>EDIT</Button>
             <Button danger onClick={showDeleteWarningHandler}>
               DELETE
             </Button>

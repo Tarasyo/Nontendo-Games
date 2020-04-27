@@ -20,6 +20,15 @@ exports.getGenre = function(req, res) {
   }); 
 };
 
+exports.getGenreById = function(req, res) {
+  Genre.findOne({_id: req.params.id}, function (err, genre) {
+    if (err) {
+      res.status(400).json(err);
+    } 
+    res.json(genre);
+  }); 
+};
+
 
 
 

@@ -21,15 +21,15 @@ const GameList = props => {
     <ul className="game-list">
       {props.items.map(game => (
         <GameItem
-          key={game.id}
-          id={game.id}
+          key={game._id}
+          id={game._id}
           image={game.imageUrl}
           name={game.name}
           publisher={game.publisher}
           release={game.release}
           director={game.director}
           rank={game.rank}
-          creatorId={game.creator}
+          genreId={game.genreId}
         />
       ))}
     </ul>

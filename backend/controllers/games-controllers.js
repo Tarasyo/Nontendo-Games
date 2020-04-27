@@ -1,4 +1,5 @@
 var Game = require('../models/games');
+var Genre = require('../models/genre');
 
 exports.createGame = function(req, res) { 
     var newgame = new Game(req.body);
@@ -7,7 +8,7 @@ exports.createGame = function(req, res) {
             res.status(400).json(err);
         }
 
-        res.json(game); 
+    res.json(game); 
 });
 };
 
@@ -21,7 +22,7 @@ exports.getGames = function(req, res) {
 };
 
 exports.getGame = function(req, res) {
-  Game.findOne({_id: req.params.id}, function (err, game) {
+  Game.find({genreId: req.params.uid}, function (err, game) {
     if (err) {
       res.status(400).json(err);
     } 

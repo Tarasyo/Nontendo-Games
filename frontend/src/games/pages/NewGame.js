@@ -58,7 +58,7 @@ const NewGame = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        'https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/',
+        'https://4000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/',
         'POST',
         JSON.stringify({
         name: formState.inputs.name.value,
