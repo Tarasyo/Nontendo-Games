@@ -22,6 +22,15 @@ exports.getGames = function(req, res) {
 };
 
 exports.getGame = function(req, res) {
+  Game.findOne({_id: req.params.gid}, function (err, game) {
+    if (err) {
+      res.status(400).json(err);
+    } 
+    res.json(game);
+  }); 
+};
+
+exports.getGameByGenreId = function(req, res) {
   Game.find({genreId: req.params.uid}, function (err, game) {
     if (err) {
       res.status(400).json(err);
@@ -31,7 +40,7 @@ exports.getGame = function(req, res) {
 };
 
 exports.updateGame = function(req, res) {
-  Game.findOneAndUpdate({_id: req.params.id}, req.body, {new: true},function (err, game) {
+  Game.findOneAndUpdate({_id: req.params.gid}, req.body, {new: true},function (err, game) {
     if (err) {
       res.status(400).json(err);
     } 
@@ -40,7 +49,7 @@ exports.updateGame = function(req, res) {
 };
 
 exports.deleteGame = function(req, res) {
-  Game.findByIdAndRemove(req.params.id, function (err, game) {
+  Game.findByIdAndRemove(req.params.gid, function (err, game) {
     if (err) {
       res.status(400).json(err);
     } 

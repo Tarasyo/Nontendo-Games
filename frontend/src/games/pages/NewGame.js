@@ -107,9 +107,7 @@ const NewGame = () => {
         errorText="Please enter a valid release."
         onInput={inputHandler}
       />
-      {/* <DatePicker className="react-datepicker"
-      selected={startDate} 
-      onChange={date => setStartDate(date)} /> */}
+
       
        <Input
         id="director"

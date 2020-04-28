@@ -4,32 +4,25 @@ import { useParams } from 'react-router-dom';
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import Card from '../../shared/components/UIElements/Card';
-import {
-  VALIDATOR_REQUIRE,
-} from '../../shared/util/validators';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import { VALIDATOR_REQUIRE, VALIDATOR_MAX } from '../../shared/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+
 import './GameForm.css';
 
-const DUMMY_GAMES = [
-  {
-    id: 'g1',
-    name: 'The Legend of Zelda: Breath of the Wild',
-    publisher: 'Nintendo',
-    imageUrl:
-      '//upload.wikimedia.org/wikipedia/en/thumb/c/c6/The_Legend_of_Zelda_Breath_of_the_Wild.jpg/220px-The_Legend_of_Zelda_Breath_of_the_Wild.jpg',
-    release: '03-03-2017',
-    director: 'Hidemaro Fujibayashi',
-    rank: 8,
-    genreId: 'u1'
-  },
-];
-
 const UpdateGame = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  const [loadedGame, setLoadedGame] = useState();
   const gameId = useParams().gameId;
 
+  
+
+  
+
   const [formState, inputHandler, setFormData] = useForm(
-    {
+   {
       name: {
         value: '',
         isValid: false
@@ -37,38 +30,108 @@ const UpdateGame = () => {
       publisher: {
         value: '',
         isValid: false
+      },
+      release: {
+        value: '',
+        isValid: false
+      },
+      director: {
+        value: '',
+        isValid: false
+      },
+      rank: {
+        value: '',
+        isValid: false
+      },
+      imageUrl: {
+        value: '',
+        isValid: false
+      },
+      genreId: {
+        value: '',
+        isValid: false
       }
     },
     false
   );
 
-  const identifiedGame = DUMMY_GAMES.find(p => p.id === gameId);
-
   useEffect(() => {
-    if (identifiedGame) {
-      setFormData(
+    const fetchGame = async () => {
+      try {
+        const responseData = await sendRequest(
+          `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/${gameId}`
+        );
+        setLoadedGame(responseData);
+        setFormData(
         {
-          name: {
-            value: identifiedGame.name,
-            isValid: true
-          },
-          publisher: {
-            value: identifiedGame.publisher,
-            isValid: true
-          }
-        },
-        true
-      );
-    }
-    setIsLoading(false);
-  }, [setFormData, identifiedGame]);
+      name: {
+        value: responseData.name,
+        isValid: true
+      },
+      publisher: {
+        value: responseData.publisher,
+        isValid: true
+      },
+      release: {
+        value: responseData.release,
+        isValid: true
+      },
+      director: {
+        value: responseData.director,
+        isValid: true
+      },
+      rank: {
+        value: responseData.rank,
+        isValid: true
+      },
+      imageUrl: {
+        value: responseData.imageUrl,
+        isValid: true
+      },
+      genreId: {
+        value: responseData.genreId,
+        isValid: true
+      }
+    },
+    true
+  );
 
-  const GameUpdateSubmitHandler = event => {
+      } catch (err) {}
+    };
+    fetchGame();
+  }, [sendRequest, gameId, setFormData]);
+
+  const gameUpdateSubmitHandler = async event => {
     event.preventDefault();
-    console.log(formState.inputs);
+    try {
+      await sendRequest(
+        `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/${gameId}`,
+        'PATCH',
+        JSON.stringify({
+        name: formState.inputs.name.value,
+        publisher: formState.inputs.publisher.value,
+        imageUrl: formState.inputs.imageUrl.value,
+        release: formState.inputs.release.value,
+        director: formState.inputs.director.value,
+        rank: formState.inputs.rank.value,
+        genreId: formState.inputs.genreId.value
+        }),
+        {
+          'Content-Type': 'application/json'
+        }
+      );
+    } catch (err) {}
   };
 
-  if (!identifiedGame) {
+  if (isLoading) {
+    return (
+      <div className="center">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
+  if (!loadedGame && !error) {
     return (
       <div className="center">
         <Card>
@@ -78,41 +141,90 @@ const UpdateGame = () => {
     );
   }
 
-  if (isLoading) {
-    return (
-      <div className="center">
-        <h2>Loading...</h2>
-      </div>
-    );
-  }
 
   return (
-    <form className="game-form" onSubmit={GameUpdateSubmitHandler}>
-      <Input
+      <React.Fragment>
+      <ErrorModal error={error} onClear={clearError} />
+       {!isLoading && loadedGame && (
+    <form className="game-form" onSubmit={gameUpdateSubmitHandler}>
+       <Input
         id="name"
         element="input"
         type="text"
-        label="name"
+        label="Name"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter a valid name."
         onInput={inputHandler}
-        initialValue={formState.inputs.name.value}
-        initialValid={formState.inputs.name.isValid}
+        initialValue={loadedGame.name}
+        initialValid={true}
       />
       <Input
         id="publisher"
-        element="textarea"
-        label="publisher"
+        element="input"
+        label="Publisher"
         validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid publisher."
+        errorText="Please enter a valid name."
         onInput={inputHandler}
-        initialValue={formState.inputs.publisher.value}
-        initialValid={formState.inputs.publisher.isValid}
+        initialValue={loadedGame.publisher}
+        initialValid={true}
+      />
+      <Input
+        id="release"
+        element="input"
+        label="Release"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid release."
+        onInput={inputHandler}
+        initialValue={loadedGame.release}
+        initialValid={true}
+      />
+      
+       <Input
+        id="director"
+        element="input"
+        label="Director"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid director."
+        onInput={inputHandler}
+        initialValue={loadedGame.director}
+        initialValid={true}
+      />
+       <Input
+        id="rank"
+        element="input"
+        label="Rank"
+        validators={[VALIDATOR_MAX(10)]}
+        errorText="Please enter a valid Rank MAX 10."
+        onInput={inputHandler}
+        initialValue={loadedGame.rank}
+        initialValid={true}
+      />
+      <Input
+        id="imageUrl"
+        element="input"
+        label="Image URL"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter a valid URL."
+        onInput={inputHandler}
+        initialValue={loadedGame.imageUrl}
+        initialValid={true}
+      />
+      <Input
+        id="genreId"
+        element="select"
+        label="Genre Options"
+        validators={[VALIDATOR_REQUIRE()]}
+        errorText="Please enter one of the Genre."
+        onInput={inputHandler}
+        initialValue={loadedGame.genreId}
+        initialValid={true}
       />
       <Button type="submit" disabled={!formState.isValid}>
         UPDATE GAME
       </Button>
     </form>
+       )}
+    </React.Fragment>
   );
 };
 
