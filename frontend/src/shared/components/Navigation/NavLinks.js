@@ -9,9 +9,6 @@ const NavLinks = props => {
       <NavLink to="/" exact>All Genres</NavLink>
     </li>
     <li>
-      <NavLink to="/u1/games">Games</NavLink>
-    </li>
-    <li>
       <NavLink to="/games/new">Add Game</NavLink>
     </li>
   </ul>

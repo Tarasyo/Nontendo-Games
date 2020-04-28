@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import Modal from '../../shared/components/UIElements/Modal';
+import { useHttpClient } from '../../shared/hooks/http-hook';
+import ErrorModal from '../../shared/components/UIElements/ErrorModal';
+import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 import './GameItem.css';
 
 
 const GameItem = props => {
+  const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);
 
 
@@ -19,13 +23,21 @@ const GameItem = props => {
     setShowConfirmModal(false);
   };
 
-  const confirmDeleteHandler = () => {
-    setShowConfirmModal(false);
-    console.log('DELETING...');
+  const confirmDeleteHandler = async () => {
+   setShowConfirmModal(false);
+    try {
+      await sendRequest(
+        `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/${props.id}`,
+        'DELETE'
+      );
+      props.onDelete(props.id);
+    } catch (err) {}
   };
+ 
 
   return (
     <React.Fragment>
+    <ErrorModal error={error} onClear={clearError} />
       <Modal
         show={showConfirmModal}
         onCancel={cancelDeleteHandler}
@@ -49,6 +61,7 @@ const GameItem = props => {
       </Modal>
       <li className="game-item">
         <Card className="game-item__content">
+        {isLoading && <LoadingSpinner asOverlay />}
           <div className="game-item__image">
             <img src={props.image} alt={props.name} />
           </div>

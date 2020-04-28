@@ -13,6 +13,10 @@ var port = process.env.PORT || 5000;
 app.use(logger('dev'));
 app.use(bodyParser.json());
 
+
+// Cross-origin resource sharing is a mechanism that allows restricted 
+// resources on a web page to be requested from another domain outside the 
+//domain from which the first resource was served
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader(

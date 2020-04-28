@@ -24,6 +24,12 @@ const GenreGames = () => {
     fetchGames();
   }, [sendRequest, genreId]);
 
+  const gameDeletedHandler = deletedGameId => {
+    setLoadedGames(prevGames =>
+      prevGames.filter(game => game._id !== deletedGameId)
+    );
+  };
+
   return (
     <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -32,7 +38,7 @@ const GenreGames = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedGames && <GameList items={loadedGames} />}
+      {!isLoading && loadedGames && <GameList items={loadedGames} onDeleteGame={gameDeletedHandler} />}
     </React.Fragment>
   );
 };

@@ -30,6 +30,7 @@ const GameList = props => {
           director={game.director}
           rank={game.rank}
           genreId={game.genreId}
+          onDelete={props.onDeleteGame}
         />
       ))}
     </ul>
