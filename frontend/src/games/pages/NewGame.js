@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+//import DatePicker from 'react-datepicker';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
@@ -14,7 +15,7 @@ import './GameForm.css';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
 const NewGame = () => {
-    
+    //const [startDate, setStartDate] = useState(new Date());
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
     {
@@ -58,7 +59,7 @@ const NewGame = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        'https://4000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/',
+        'https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/',
         'POST',
         JSON.stringify({
         name: formState.inputs.name.value,
@@ -106,6 +107,10 @@ const NewGame = () => {
         errorText="Please enter a valid release."
         onInput={inputHandler}
       />
+      {/* <DatePicker className="react-datepicker"
+      selected={startDate} 
+      onChange={date => setStartDate(date)} /> */}
+      
        <Input
         id="director"
         element="input"
@@ -133,7 +138,7 @@ const NewGame = () => {
       <Input
         id="genreId"
         element="select"
-        label="CGenre Options"
+        label="Genre Options"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter one of the Genre."
         onInput={inputHandler}
@@ -145,7 +150,9 @@ const NewGame = () => {
         ADD GAME
       </Button>
     </form>
+    
     </React.Fragment>
+    
   );
 };
 

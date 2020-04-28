@@ -8,3 +8,7 @@
   border-radius: 6px;
   background: white;
 }
+.react-datepicker {
+  display: block;
+  width: 100%;
+}

@@ -60,11 +60,13 @@ const Input = props => {
         onBlur={touchHandler}
         value={inputState.value}
       />
-    ) : (
+    ) :  (
         <select id={props.id} value={inputState.value} onChange={changeHandler}>            
-            <option value="5ea5cde1db5e6a98a82fc654">Adventure</option>
-            <option value="5ea5ef22be62a5d46a660f7f">Role-playing</option>
+            <option value="5ea843e99293e91547d742c7">Adventure</option>
+            <option value="5ea8445d9293e91547d742c8">Role-playing</option>
             <option value="5ea5ef68be62a5d46a660f80">Sports</option>
+            <option value="5ea844f39293e91547d742c9">Life Simulation</option>
+            <option value="5ea845679293e91547d742ca">Fighting game</option>
         </select>
     );
 

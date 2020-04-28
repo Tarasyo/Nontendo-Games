@@ -9,7 +9,7 @@ var multer = require('multer');
 var upload = multer({ dest: module.exports.UPLOAD_PATH });
 
 router.get('/', genreController.getGenre);
-router.post('/genre', genreController.createGenre);
+router.post('/new', genreController.createGenre);
 router.get('/:uid', genreController.getGenreById);
 
 
