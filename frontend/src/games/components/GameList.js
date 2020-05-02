@@ -23,7 +23,7 @@ const GameList = props => {
         <GameItem
           key={game._id}
           id={game._id}
-          image={game.imageUrl}
+          image={game.image}
           name={game.name}
           publisher={game.publisher}
           release={game.release}

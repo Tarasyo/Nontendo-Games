@@ -1,8 +1,10 @@
 var Game = require('../models/games');
 var Genre = require('../models/genre');
+const fs = require('fs');
 
 exports.createGame = function(req, res) { 
     var newgame = new Game(req.body);
+    newgame.image = req.file.path;
     newgame.save(function (err, game) { 
         if (err) { 
             res.status(400).json(err);
@@ -53,6 +55,10 @@ exports.deleteGame = function(req, res) {
     if (err) {
       res.status(400).json(err);
     } 
+    var imagePath = game.image;
+    fs.unlink(imagePath, err => {
+        console.log(err);
+    });
     res.json(game);
   }); 
 };

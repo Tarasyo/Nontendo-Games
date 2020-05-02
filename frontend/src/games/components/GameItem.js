@@ -63,7 +63,7 @@ const GameItem = props => {
         <Card className="game-item__content">
         {isLoading && <LoadingSpinner asOverlay />}
           <div className="game-item__image">
-            <img src={props.image} alt={props.name} />
+            <img src={`https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/${props.image}`} alt={props.name} />
           </div>
           <div className="game-item__info">
             <h2>{props.name}</h2>

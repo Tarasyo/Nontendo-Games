@@ -1,6 +1,7 @@
 //The main parts of the backend code was taken from lecture of IWA classes GitHub account https://github.com/mikhail-cct/mongodb-test
 //Add customise for my application
-
+const fs = require('fs');
+const path = require('path');
 var express = require('express'),
  bodyParser = require('body-parser'),
  mongoose = require('mongoose'),
@@ -15,6 +16,9 @@ var port = process.env.PORT || 5000;
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
+
+
+app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 
 // Cross-origin resource sharing is a mechanism that allows restricted 

@@ -4,6 +4,8 @@ import GenreItem from './GenreItem';
 import Card from '../../shared/components/UIElements/Card';
 import './GenreList.css';
 
+
+//GenerList component takes data from Genre and retrive each element and pass it next to GenerItem
 const GenreList = props => {
   if (props.items.length === 0) {
     return (

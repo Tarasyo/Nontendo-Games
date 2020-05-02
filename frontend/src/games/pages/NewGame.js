@@ -6,6 +6,7 @@ import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload'
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MAX
@@ -20,7 +21,8 @@ const NewGame = () => {
     //const [startDate, setStartDate] = useState(new Date());
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   //If some changes are made in form this wll change the value in use form 
-  //isValid checks for value not to be empty the submit button will be active just if in all 
+  //isValid checks for value not to be empty the submit button will be active just if
+  //all isValid will be true
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -43,7 +45,7 @@ const NewGame = () => {
         value: '',
         isValid: false
       },
-      imageUrl: {
+      image: {
         value: '',
         isValid: false
       },
@@ -56,31 +58,31 @@ const NewGame = () => {
   );
     
   
-
+//POST request takes input value of each vatible and send it 
   const history = useHistory();
 
   const gameSubmitHandler = async event => {
     event.preventDefault();
     try {
+        const formData = new FormData();
+        formData.append('name', formState.inputs.name.value);
+        formData.append('publisher', formState.inputs.publisher.value);
+        formData.append('image', formState.inputs.image.value);
+        formData.append('release', formState.inputs.release.value);
+        formData.append('director', formState.inputs.director.value);
+        formData.append('rank', formState.inputs.rank.value);
+        formData.append('genreId', formState.inputs.genreId.value);
       await sendRequest(
         'https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/',
         'POST',
-        JSON.stringify({
-        name: formState.inputs.name.value,
-        publisher: formState.inputs.publisher.value,
-        imageUrl: formState.inputs.imageUrl.value,
-        release: formState.inputs.release.value,
-        director: formState.inputs.director.value,
-        rank: formState.inputs.rank.value,
-        genreId: formState.inputs.genreId.value
-        }),
-        { 'Content-Type': 'application/json' }
+        formData
       );
       history.push('/');
     } catch (err) {}
   };
   
-
+//this is input form wit hhas error handalin. Iput component was custom createt and validation of the fillds as well
+//Most of ipuputs requre some input just rank cheks some number not motre then 10
   return (
       <React.Fragment>
       <ErrorModal error={error} onClear={clearError} />
@@ -129,13 +131,10 @@ const NewGame = () => {
         errorText="Please enter a valid Rank MAX 10."
         onInput={inputHandler}
       />
-      <Input
-        id="imageUrl"
-        element="input"
-        label="Image URL"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid URL."
-        onInput={inputHandler}
+      <ImageUpload 
+      id="image"
+      onInput={inputHandler}
+      errorText="Please provide an image."
       />
       <Input
         id="genreId"
