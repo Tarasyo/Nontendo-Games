@@ -2,6 +2,8 @@ var Game = require('../models/games');
 var Genre = require('../models/genre');
 const fs = require('fs');
 
+//Req Res handele functions of the game
+
 exports.createGame = function(req, res) { 
     var newgame = new Game(req.body);
     newgame.image = req.file.path;

@@ -1,5 +1,7 @@
 const Genre = require('../models/genre');
 
+//Req Res handele functions of the genre
+
 exports.createGenre = function(req, res) { 
     var newgenre = new Genre(req.body);
     newgenre.save(function (err, genre) { 

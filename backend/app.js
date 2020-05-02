@@ -35,6 +35,7 @@ app.use((req, res, next) => {
   next();
 });
 
+//main routes 
 app.use('/api/games', gamesRoutes);
 app.use('/api/genre', genreRoutes);
 
@@ -43,6 +44,7 @@ app.listen(port, function(err){
     console.log("Listening on Port: " + port)
 });
 
+//connection to the database
 mongoose.connect(process.env.MONGODB_URL);
 mongoose.connection.on('error', (err) => { 
     console.log('Mongodb Error: ', err); 

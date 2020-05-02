@@ -5,6 +5,7 @@ import './ImageUpload.css';
 
 
 //Image uploud component takes just 3 types of file on clidk open the file picker
+//moste of the code taken from Udemy course
 const ImageUpload = props => {
   const [file, setFile] = useState();
   const [previewUrl, setPreviewUrl] = useState();
