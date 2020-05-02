@@ -1,5 +1,8 @@
 import { useCallback, useReducer } from 'react';
 
+
+//Hook bettwen forms, chiled perent elements and some components 
+//Main behavior is on INPUT_CHANGE and SET_DATA
 const formReducer = (state, action) => {
   switch (action.type) {
     case 'INPUT_CHANGE':

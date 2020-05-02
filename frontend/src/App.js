@@ -1,3 +1,6 @@
+//Just the App.js which is passed to the index.js 
+//This commponent holds and return the main page components
+
 import React from 'react';
 import {
   BrowserRouter as Router,

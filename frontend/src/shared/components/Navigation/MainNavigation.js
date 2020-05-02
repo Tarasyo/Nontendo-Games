@@ -7,6 +7,9 @@ import SideDrawer from './SideDrawer';
 import Backdrop from '../UIElements/Backdrop';
 import './MainNavigation.css';
 
+
+//MainNAvigation component handles aall main action that user performs
+//cheks if screen size changes runs SideDrawer 
 const MainNavigation = props => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 

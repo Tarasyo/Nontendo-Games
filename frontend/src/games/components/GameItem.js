@@ -9,7 +9,7 @@ import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
 
 import './GameItem.css';
 
-
+//GameItem takes data that passed from GameList and structure all valuse of the each object in the nice view 
 const GameItem = props => {
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [showConfirmModal, setShowConfirmModal] = useState(false);

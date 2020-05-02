@@ -14,9 +14,13 @@ import { useForm } from '../../shared/hooks/form-hook';
 import './GameForm.css';
 import { useHttpClient } from '../../shared/hooks/http-hook';
 
+
+//Add new game commponent 
 const NewGame = () => {
     //const [startDate, setStartDate] = useState(new Date());
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
+  //If some changes are made in form this wll change the value in use form 
+  //isValid checks for value not to be empty the submit button will be active just if in all 
   const [formState, inputHandler] = useForm(
     {
       name: {
@@ -136,7 +140,7 @@ const NewGame = () => {
       <Input
         id="genreId"
         element="select"
-        label="Genre Options"
+        label="Select Genre"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter one of the Genre."
         onInput={inputHandler}

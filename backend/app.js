@@ -1,3 +1,6 @@
+//The main parts of the backend code was taken from lecture of IWA classes GitHub account https://github.com/mikhail-cct/mongodb-test
+//Add customise for my application
+
 var express = require('express'),
  bodyParser = require('body-parser'),
  mongoose = require('mongoose'),

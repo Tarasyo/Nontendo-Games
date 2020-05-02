@@ -4,6 +4,8 @@ import { CSSTransition } from 'react-transition-group';
 
 import './SideDrawer.css';
 
+
+//SideDrawer component that hendels user interface on different devices 
 const SideDrawer = props => {
   const content = (
     <CSSTransition

@@ -19,7 +19,8 @@ const UpdateGame = () => {
 
   
 
-  
+  //in general works in same way as new game just before pushe new data I assign
+  //the id of the game and fetch data by this id and fill the form
 
   const [formState, inputHandler, setFormData] = useForm(
    {
@@ -212,7 +213,7 @@ const UpdateGame = () => {
       <Input
         id="genreId"
         element="select"
-        label="Genre Options"
+        label="Select Genre"
         validators={[VALIDATOR_REQUIRE()]}
         errorText="Please enter one of the Genre."
         onInput={inputHandler}

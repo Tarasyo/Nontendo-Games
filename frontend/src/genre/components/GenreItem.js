@@ -5,6 +5,8 @@ import Avatar from '../../shared/components/UIElements/Avatar';
 import Card from '../../shared/components/UIElements/Card';
 import './GenreItem.css';
 
+
+//GenerItem takes data from GenerList and and create alement on the front page with help of Card component
 const GenreItem = props => {
   return (
     <li className="genre-item">

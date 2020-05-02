@@ -3,6 +3,9 @@ import React, { useReducer, useEffect } from 'react';
 import { validate } from '../../util/validators';
 import './Input.css';
 
+
+//Custome input component have special behavior on touche and change
+//hace owne css
 const inputReducer = (state, action) => {
   switch (action.type) {
     case 'CHANGE':
@@ -50,6 +53,7 @@ const Input = props => {
     });
   };
 
+  //If elemet is initilized as input its will be input field if elment initilized as something dofferen its will be select form
   const element =
     props.element === 'input' ? (
       <input
@@ -61,7 +65,8 @@ const Input = props => {
         value={inputState.value}
       />
     ) :  (
-        <select id={props.id} value={inputState.value} onChange={changeHandler}>            
+        <select id={props.id}  value={inputState.value} onChange={changeHandler}>
+            <option value =""> -- select an option -- </option>            
             <option value="5ea843e99293e91547d742c7">Adventure</option>
             <option value="5ea8445d9293e91547d742c8">Role-playing</option>
             <option value="5ea5ef68be62a5d46a660f80">Sports</option>
