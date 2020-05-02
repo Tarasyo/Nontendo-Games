@@ -18,7 +18,7 @@ const GenreGames = () => {
     const fetchGames = async () => {
       try {
         const responseData = await sendRequest(
-          `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/genre/${genreId}`
+          `https://lit-ridge-92949.herokuapp.com/api/games/genre/${genreId}`
         );
         setLoadedGames(responseData);
       } catch (err) {}

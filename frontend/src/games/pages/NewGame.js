@@ -73,7 +73,7 @@ const NewGame = () => {
         formData.append('rank', formState.inputs.rank.value);
         formData.append('genreId', formState.inputs.genreId.value);
       await sendRequest(
-        'https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/',
+        'https://lit-ridge-92949.herokuapp.com/api/games/',
         'POST',
         formData
       );

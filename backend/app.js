@@ -19,6 +19,7 @@ app.use(bodyParser.json());
 
 
 app.use('/uploads/images', express.static(path.join('uploads', 'images')));
+app.use(express.static(path.join('public')));
 
 
 // Cross-origin resource sharing is a mechanism that allows restricted 
@@ -38,6 +39,10 @@ app.use((req, res, next) => {
 //main routes 
 app.use('/api/games', gamesRoutes);
 app.use('/api/genre', genreRoutes);
+
+app.use((req, res, next) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'))
+});
 
 
 app.listen(port, function(err){

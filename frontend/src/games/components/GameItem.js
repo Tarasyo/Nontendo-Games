@@ -27,7 +27,7 @@ const GameItem = props => {
    setShowConfirmModal(false);
     try {
       await sendRequest(
-        `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/${props.id}`,
+        `https://lit-ridge-92949.herokuapp.com/api/games/${props.id}`,
         'DELETE'
       );
       props.onDelete(props.id);
@@ -63,7 +63,7 @@ const GameItem = props => {
         <Card className="game-item__content">
         {isLoading && <LoadingSpinner asOverlay />}
           <div className="game-item__image">
-            <img src={`https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/${props.image}`} alt={props.name} />
+            <img src={`https://lit-ridge-92949.herokuapp.com/${props.image}`} alt={props.name} />
           </div>
           <div className="game-item__info">
             <h2>{props.name}</h2>

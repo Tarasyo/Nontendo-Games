@@ -60,7 +60,7 @@ const UpdateGame = () => {
     const fetchGame = async () => {
       try {
         const responseData = await sendRequest(
-          `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/${gameId}`
+          `https://lit-ridge-92949.herokuapp.com/api/games/${gameId}`
         );
         setLoadedGame(responseData);
         setFormData(
@@ -103,7 +103,7 @@ const UpdateGame = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `https://5000-b8ced7cc-fda7-4fd7-92b0-6db1168d8c0c.ws-eu01.gitpod.io/api/games/${gameId}`,
+        `https://lit-ridge-92949.herokuapp.com/api/games/${gameId}`,
         'PATCH',
         JSON.stringify({
         name: formState.inputs.name.value,
