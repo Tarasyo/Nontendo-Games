@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 
 import Input from '../../shared/components/FormElements/Input';
 import Button from '../../shared/components/FormElements/Button';
@@ -85,10 +85,6 @@ const UpdateGame = () => {
         value: responseData.rank,
         isValid: true
       },
-      imageUrl: {
-        value: responseData.imageUrl,
-        isValid: true
-      },
       genreId: {
         value: responseData.genreId,
         isValid: true
@@ -101,6 +97,7 @@ const UpdateGame = () => {
     };
     fetchGame();
   }, [sendRequest, gameId, setFormData]);
+  const history = useHistory();
 
   const gameUpdateSubmitHandler = async event => {
     event.preventDefault();
@@ -111,7 +108,6 @@ const UpdateGame = () => {
         JSON.stringify({
         name: formState.inputs.name.value,
         publisher: formState.inputs.publisher.value,
-        imageUrl: formState.inputs.imageUrl.value,
         release: formState.inputs.release.value,
         director: formState.inputs.director.value,
         rank: formState.inputs.rank.value,
@@ -121,6 +117,7 @@ const UpdateGame = () => {
           'Content-Type': 'application/json'
         }
       );
+      history.push('/');
     } catch (err) {}
   };
 
@@ -198,16 +195,6 @@ const UpdateGame = () => {
         errorText="Please enter a valid Rank MAX 10."
         onInput={inputHandler}
         initialValue={loadedGame.rank}
-        initialValid={true}
-      />
-      <Input
-        id="imageUrl"
-        element="input"
-        label="Image URL"
-        validators={[VALIDATOR_REQUIRE()]}
-        errorText="Please enter a valid URL."
-        onInput={inputHandler}
-        initialValue={loadedGame.imageUrl}
         initialValid={true}
       />
       <Input

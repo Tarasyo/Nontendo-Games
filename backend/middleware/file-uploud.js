@@ -1,6 +1,8 @@
 const multer = require('multer');
 const uuid = require('uuidv1');
 
+//File uplode uses multer and create name of the file by uuidv1 module 
+
 const MIME_TYPE_MAP = {
   'image/png': 'png',
   'image/jpeg': 'jpeg',
