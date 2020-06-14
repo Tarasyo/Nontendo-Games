@@ -13,7 +13,7 @@ const fileUpload = multer({
   limits: 500000,
   storage: multer.diskStorage({
     destination: (req, file, cb) => {
-      cb(null, 'uploads/images');
+      cb(null, 'http://s3.amazonaws.com/bucketeer-34d1c0c7-b5e8-40ce-b312-8c41305a5f78');
     },
     filename: (req, file, cb) => {
       const ext = MIME_TYPE_MAP[file.mimetype];
