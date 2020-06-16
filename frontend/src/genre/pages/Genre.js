@@ -16,7 +16,7 @@ const Genre = () => {
     const fetchGenres = async () => {
       try {
         const responseData = await sendRequest(
-          'https://lit-ridge-92949.herokuapp.com/api/genre/'
+          'http://tarasspace.ddns.net/api/genre/'
         );
 
         setLoadedGenres(responseData);

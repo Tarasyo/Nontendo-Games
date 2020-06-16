@@ -27,7 +27,7 @@ const GameItem = props => {
    setShowConfirmModal(false);
     try {
       await sendRequest(
-        `https://lit-ridge-92949.herokuapp.com/api/games/${props.id}`,
+        `http://tarasspace.ddns.net/api/games/${props.id}`,
         'DELETE'
       );
       props.onDelete(props.id);
@@ -63,7 +63,7 @@ const GameItem = props => {
         <Card className="game-item__content">
         {isLoading && <LoadingSpinner asOverlay />}
           <div className="game-item__image">
-            <img src={`https://lit-ridge-92949.herokuapp.com/${props.image}`} alt={props.name} />
+            <img src={`http://tarasspace.ddns.net/${props.image}`} alt={props.name} />
           </div>
           <div className="game-item__info">
             <h2>{props.name}</h2>
