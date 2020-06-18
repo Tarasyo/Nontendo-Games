@@ -27,7 +27,7 @@ const GameItem = props => {
    setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://localhost:5000/api/games/${props.id}`,
+        `http://tarasyo.me/api/games/${props.id}`,
         'DELETE'
       );
       props.onDelete(props.id);
