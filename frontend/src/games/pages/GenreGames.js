@@ -18,7 +18,7 @@ const GenreGames = () => {
     const fetchGames = async () => {
       try {
         const responseData = await sendRequest(
-          `https://lit-ridge-92949.herokuapp.com/api/games/genre/${genreId}`
+          `http://tarasyo.me/api/games/genre/${genreId}`
         );
         setLoadedGames(responseData);
       } catch (err) {}

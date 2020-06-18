@@ -60,7 +60,7 @@ const UpdateGame = () => {
     const fetchGame = async () => {
       try {
         const responseData = await sendRequest(
-          `https://lit-ridge-92949.herokuapp.com/api/games/${gameId}`
+          `http://tarasyo.me/api/games/${gameId}`
         );
         setLoadedGame(responseData);
         setFormData(
@@ -103,7 +103,7 @@ const UpdateGame = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `https://lit-ridge-92949.herokuapp.com/api/games/${gameId}`,
+        `http://tarasyo.me/api/games/${gameId}`,
         'PATCH',
         JSON.stringify({
         name: formState.inputs.name.value,

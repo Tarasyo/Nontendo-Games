@@ -73,7 +73,7 @@ const NewGame = () => {
         formData.append('rank', formState.inputs.rank.value);
         formData.append('genreId', formState.inputs.genreId.value);
       await sendRequest(
-        'https://lit-ridge-92949.herokuapp.com/api/games/',
+        'http://tarasyo.me/api/games/',
         'POST',
         formData
       );
