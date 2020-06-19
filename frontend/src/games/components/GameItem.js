@@ -27,7 +27,7 @@ const GameItem = props => {
    setShowConfirmModal(false);
     try {
       await sendRequest(
-        `http://tarasyo.me/api/games/${props.id}`,
+        `https://tarasyo.me/api/games/${props.id}`,
         'DELETE'
       );
       props.onDelete(props.id);
@@ -63,7 +63,7 @@ const GameItem = props => {
         <Card className="game-item__content">
         {isLoading && <LoadingSpinner asOverlay />}
           <div className="game-item__image">
-            <img src={`http://tarasyo.me/${props.image}`} alt={props.name} />
+            <img src={`https://tarasyo.me/${props.image}`} alt={props.name} />
           </div>
           <div className="game-item__info">
             <h2>{props.name}</h2>

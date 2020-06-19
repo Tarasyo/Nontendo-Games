@@ -16,7 +16,7 @@ const Genre = () => {
     const fetchGenres = async () => {
       try {
         const responseData = await sendRequest(
-          'http://tarasyo.me/api/genre/'
+          'https://tarasyo.me/api/genre/'
         );
 
         setLoadedGenres(responseData);

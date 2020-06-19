@@ -18,7 +18,7 @@ const GenreGames = () => {
     const fetchGames = async () => {
       try {
         const responseData = await sendRequest(
-          `http://tarasyo.me/api/games/genre/${genreId}`
+          `https://tarasyo.me/api/games/genre/${genreId}`
         );
         setLoadedGames(responseData);
       } catch (err) {}

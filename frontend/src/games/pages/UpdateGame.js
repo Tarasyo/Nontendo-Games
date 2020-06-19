@@ -60,7 +60,7 @@ const UpdateGame = () => {
     const fetchGame = async () => {
       try {
         const responseData = await sendRequest(
-          `http://tarasyo.me/api/games/${gameId}`
+          `https://tarasyo.me/api/games/${gameId}`
         );
         setLoadedGame(responseData);
         setFormData(
@@ -103,7 +103,7 @@ const UpdateGame = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://tarasyo.me/api/games/${gameId}`,
+        `https://tarasyo.me/api/games/${gameId}`,
         'PATCH',
         JSON.stringify({
         name: formState.inputs.name.value,

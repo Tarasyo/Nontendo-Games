@@ -73,7 +73,7 @@ const NewGame = () => {
         formData.append('rank', formState.inputs.rank.value);
         formData.append('genreId', formState.inputs.genreId.value);
       await sendRequest(
-        'http://tarasyo.me/api/games/',
+        'https://tarasyo.me/api/games/',
         'POST',
         formData
       );
