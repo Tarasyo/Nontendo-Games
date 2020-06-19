@@ -5,8 +5,6 @@ Interactive Web Applications
 
 
 Application Link: <a href="https://tarasyo.me/">My App</a>
-The uploaded images in the application are disappearing after a reboot of the dyno (which happens minimum once per day) it will be fixed after reviewing of the project,
-They are disappearing because Heroku doesn't support file uploads in the local path so in the future will be used Amazon S3.
 For this project was used MERN stack 
 
 Folder backend consists of all files that need and was deployed on the Heroku, 
