@@ -1,8 +1,5 @@
 # Project Title
 
-CCT College Dublin
-Interactive Web Applications
-
 
 Application Link: <a href="https://tarasyo.me/">My App</a>
 For this project was used MERN stack 
